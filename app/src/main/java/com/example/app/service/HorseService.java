@@ -9,5 +9,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class HorseService {
     public void registerNewHorse(RegisterHorse horse) {
+        Horse
     }
 }
