@@ -12,28 +12,33 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.util.Date;
 
 
+@Entity
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
 @Table(name = "users")
 @EntityListeners(AuditingEntityListener.class)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long id;
 
-    @NotBlank
+    @NotBlank(message="username is required")
     private String username;
 
-    @NotBlank
+    @NotBlank(message="password is required")
     private String password;
 
     @Email
-    @NotBlank
+    @NotBlank(message="email is required")
     private String email;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    @Builder.Default
+    private Role role=Role.USER;
 
     @CreatedDate
     @Column(name = "created")
@@ -42,9 +47,4 @@ public class User {
     @LastModifiedDate
     @Column(name = "updated")
     private Date updated;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role")
-    @Builder.Default
-    private Role role=Role.USER;
 }
