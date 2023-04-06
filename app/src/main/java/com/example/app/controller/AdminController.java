@@ -1,6 +1,7 @@
 package com.example.app.controller;
 
 import com.example.app.dto.RegisterHorse;
+import com.example.app.service.HorseService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,10 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @Slf4j
 public class AdminController {
+    private final HorseService horseService;
 
     @PostMapping("/add/horse")
     public ResponseEntity<Void> addNewHorse(@Valid @RequestBody RegisterHorse horse) {
-        // add new horse
+        horseService.registerNewHorse(horse);
         return ResponseEntity.ok().build();
     }
 
