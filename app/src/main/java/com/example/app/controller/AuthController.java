@@ -33,7 +33,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) {
-        log.info("login controller");
         return authService.login(loginRequest);
     }
 
