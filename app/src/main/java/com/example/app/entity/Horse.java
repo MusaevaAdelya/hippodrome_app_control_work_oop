@@ -1,5 +1,6 @@
 package com.example.app.entity;
 
+import com.example.app.enums.Status;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -19,4 +20,9 @@ public class Horse {
 
     @NotBlank(message="name is required")
     String name;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    @Builder.Default
+    private Status status=Status.ACTIVE;
 }

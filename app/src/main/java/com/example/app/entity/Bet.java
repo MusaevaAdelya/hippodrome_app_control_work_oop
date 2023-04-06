@@ -1,5 +1,6 @@
 package com.example.app.entity;
 
+import com.example.app.enums.Status;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,5 +23,10 @@ public class Bet {
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     User user;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    @Builder.Default
+    private Status status=Status.ACTIVE;
 
 }
