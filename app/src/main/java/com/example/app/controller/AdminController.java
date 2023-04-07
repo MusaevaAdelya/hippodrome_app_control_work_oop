@@ -39,5 +39,12 @@ public class AdminController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/calc/bet-money")
+    public ResponseEntity<BetResultDTO> calcResultMoney(){
+        betService.calcResultMoney();
+        ResponseEntity.ok().build();
+    }
+
+
 
 }
