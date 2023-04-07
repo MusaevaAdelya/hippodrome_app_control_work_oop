@@ -54,14 +54,14 @@ public class InitDataBase {
                         .user(admin)
                         .horse(horse1)
                         .money(300)
-                        .status(BetStatus.CLOSED)
+                        .status(BetStatus.ACTIVE)
                         .build();
 
                 Bet bet1= Bet.builder()
                         .user(admin)
                         .horse(horse2)
                         .money(500)
-                        .status(BetStatus.CLOSED)
+                        .status(BetStatus.ACTIVE)
                         .build();
 
                 betRepository.saveAll(List.of(bet,bet1));

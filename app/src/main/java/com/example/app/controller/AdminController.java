@@ -27,10 +27,10 @@ public class AdminController {
         return ResponseEntity.ok().build();
     }
 
-//    @GetMapping("/get/all-bets")
-//    public ResponseEntity<List<BetDTO>> getAllActiveBets(){
-//
-//        ResponseEntity.ok().body(betService.getAllBets());
-//    }
+    @GetMapping("/get/all-bets")
+    public ResponseEntity<List<BetDTO>> getAllActiveBets(){
+        return ResponseEntity.ok().body(betService.getAllBets());
+
+    }
 
 }

@@ -17,4 +17,8 @@ public interface BetRepository extends JpaRepository<Bet, Long> {
 
     @Query(value="select b from Bet b where b.user.id=:userId and b.status=:status")
     List<Bet> findByUserIdAndStatus(Long userId, BetStatus status);
+
+
+    @Query(value="select b from Bet b where b.status=:status")
+    List<Bet> findByStatus(BetStatus status);
 }
