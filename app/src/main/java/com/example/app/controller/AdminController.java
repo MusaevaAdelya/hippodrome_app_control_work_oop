@@ -33,4 +33,10 @@ public class AdminController {
 
     }
 
+    @PostMapping("/close/racing")
+    public ResponseEntity<Void> closeRacing(){
+        betService.closeRacing();
+        return ResponseEntity.ok().build();
+    }
+
 }
