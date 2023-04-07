@@ -25,4 +25,7 @@ public class Horse {
     @Column(name = "status")
     @Builder.Default
     private Status status=Status.ACTIVE;
+
+    @Builder.Default
+    private Boolean winner=false;
 }
