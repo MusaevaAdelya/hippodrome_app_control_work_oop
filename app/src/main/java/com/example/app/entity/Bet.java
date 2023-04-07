@@ -1,6 +1,6 @@
 package com.example.app.entity;
 
-import com.example.app.enums.Status;
+import com.example.app.enums.BetStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,7 +27,7 @@ public class Bet {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     @Builder.Default
-    private Status status=Status.ACTIVE;
+    private BetStatus status=BetStatus.ACTIVE;
 
     private Integer money;
 

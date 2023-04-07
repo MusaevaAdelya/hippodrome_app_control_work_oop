@@ -1,6 +1,6 @@
 package com.example.app.entity;
 
-import com.example.app.enums.Status;
+import com.example.app.enums.HorseStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -24,7 +24,7 @@ public class Horse {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     @Builder.Default
-    private Status status=Status.ACTIVE;
+    private HorseStatus status=HorseStatus.ACTIVE;
 
     @Builder.Default
     private Boolean winner=false;
