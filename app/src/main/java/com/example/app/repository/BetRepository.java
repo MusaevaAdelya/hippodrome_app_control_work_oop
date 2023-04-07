@@ -1,6 +1,7 @@
 package com.example.app.repository;
 
 import com.example.app.entity.Bet;
+import com.example.app.entity.User;
 import com.example.app.enums.BetStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -10,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Transactional
+
 @Repository
 public interface BetRepository extends JpaRepository<Bet, Long> {
 
@@ -26,8 +27,13 @@ public interface BetRepository extends JpaRepository<Bet, Long> {
     List<Bet> findByStatus(BetStatus status);
 
 
+    @Transactional
     @Modifying(clearAutomatically = true)
     @Query(value = "update bets set status='CLOSED' where status='ACTIVE' ", nativeQuery = true)
     void closeBets();
+
+
+    @Query(value="select distinct b.user from Bet b where b.status=:status")
+    List<User> getBetUsersByStatus(BetStatus status);
 
 }

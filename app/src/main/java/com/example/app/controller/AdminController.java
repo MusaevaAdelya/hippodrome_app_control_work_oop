@@ -3,6 +3,10 @@ package com.example.app.controller;
 import com.example.app.dto.BetDTO;
 import com.example.app.dto.BetResultDTO;
 import com.example.app.dto.RegisterHorse;
+import com.example.app.entity.User;
+import com.example.app.enums.BetStatus;
+import com.example.app.mapper.BetResultMapper;
+import com.example.app.repository.BetRepository;
 import com.example.app.service.BetService;
 import com.example.app.service.HorseService;
 import jakarta.validation.Valid;
@@ -21,6 +25,8 @@ import java.util.List;
 public class AdminController {
     private final HorseService horseService;
     private final BetService betService;
+    private final BetRepository betRepository;
+    private final BetResultMapper betResultMapper;
 
     @PostMapping("/add/horse")
     public ResponseEntity<Void> addNewHorse(@Valid @RequestBody RegisterHorse horse) {
@@ -41,9 +47,10 @@ public class AdminController {
     }
 
     @GetMapping("/calc/bet-money")
-    public ResponseEntity<BetResultDTO> calcResultMoney(){
-//        betService.calcResultMoney();
-        return ResponseEntity.ok().build();
+    public ResponseEntity<List<BetResultDTO>> calcResultMoney(){
+        List<User> users=betRepository.getBetUsersByStatus(BetStatus.CLOSED);
+        List<BetResultDTO> result=users.stream().map(betResultMapper::map).toList();
+        return ResponseEntity.ok().body(result);
     }
 
 

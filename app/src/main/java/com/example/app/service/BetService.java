@@ -1,11 +1,13 @@
 package com.example.app.service;
 
 import com.example.app.dto.BetDTO;
+import com.example.app.dto.BetResultDTO;
 import com.example.app.dto.NewBetDTO;
 import com.example.app.entity.Bet;
 import com.example.app.entity.Horse;
 import com.example.app.entity.User;
 import com.example.app.enums.BetStatus;
+import com.example.app.mapper.BetResultMapper;
 import com.example.app.mapper.HorseMapper;
 import com.example.app.mapper.UserMapper;
 import com.example.app.repository.BetRepository;
@@ -28,6 +30,7 @@ public class BetService {
     private final HorseService horseService;
     private final HorseMapper horseMapper;
     private final UserMapper userMapper;
+
 
     public void makeBet(NewBetDTO newBetDTO, String email) {
         User user=userRepository.findByEmail(email)
@@ -92,5 +95,10 @@ public class BetService {
         horseRepository.setRandomHorseWinner();
     }
 
-
+//
+//    public List<BetResultDTO> calcResultMoney() {
+//        BetResultMapper mapper=
+//        List<User> betUsers=;
+//        return betUsers.stream().map(betResultMapper::map).toList();
+//    }
 }
