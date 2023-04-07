@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class HorseService {
-    HorseRepository horseRepository;
+    private final HorseRepository horseRepository;
 
     public void registerNewHorse(RegisterHorse horse) {
         Horse newHorse= Horse.builder()
