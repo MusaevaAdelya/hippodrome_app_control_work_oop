@@ -1,8 +1,11 @@
 package com.example.app.util;
 
+import com.example.app.entity.Bet;
 import com.example.app.entity.Horse;
 import com.example.app.entity.User;
+import com.example.app.enums.BetStatus;
 import com.example.app.enums.Role;
+import com.example.app.repository.BetRepository;
 import com.example.app.repository.HorseRepository;
 import com.example.app.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -15,10 +18,10 @@ import java.util.List;
 @Configuration
 public class InitDataBase {
     @Bean
-    CommandLineRunner initData(UserRepository userRepository, HorseRepository horseRepository, PasswordEncoder passwordEncoder) {
+    CommandLineRunner initData(UserRepository userRepository, HorseRepository horseRepository, BetRepository betRepository, PasswordEncoder passwordEncoder) {
         return args -> {
 
-            if(userRepository.findAll().size()==0){
+            if(userRepository.findAll().size()==0 && horseRepository.findAll().size()==0){
                 User admin=User.builder()
                         .username("adelya")
                         .password(passwordEncoder.encode("123"))
@@ -33,9 +36,7 @@ public class InitDataBase {
                         .build();
 
                 userRepository.saveAll(List.of(admin,user));
-            }
 
-            if(horseRepository.findAll().size()==0){
                 Horse horse1= Horse.builder()
                         .name("Apple Jack")
                         .build();
@@ -48,6 +49,22 @@ public class InitDataBase {
                 horse2.setWinner(true);
 
                 horseRepository.saveAll(List.of(horse1,horse2));
+
+                Bet bet= Bet.builder()
+                        .user(admin)
+                        .horse(horse1)
+                        .money(300)
+                        .status(BetStatus.CLOSED)
+                        .build();
+
+                Bet bet1= Bet.builder()
+                        .user(admin)
+                        .horse(horse2)
+                        .money(500)
+                        .status(BetStatus.CLOSED)
+                        .build();
+
+                betRepository.saveAll(List.of(bet,bet1));
             }
 
 

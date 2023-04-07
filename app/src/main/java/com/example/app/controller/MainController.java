@@ -35,11 +35,11 @@ public class MainController {
     public ResponseEntity<HorseDTO> getWinnerHorse(){
         return ResponseEntity.ok().body(horseService.getWinnerHorse());
     }
-//
-//    @GetMapping("/get/money")
-//    public ResponseEntity<Integer> getWinnerHorse(Authentication authentication){
-//        return ResponseEntity.ok().body(betService.getMoney(authentication.getName()));
-//    }
+
+    @GetMapping("/get/money")
+    public ResponseEntity<Integer> getWinnerHorse(Authentication authentication){
+        return ResponseEntity.ok().body(betService.getMoney(authentication.getName()));
+    }
 
 
 }
