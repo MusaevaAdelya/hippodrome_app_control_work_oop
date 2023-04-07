@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.List;
+
 @Configuration
 public class InitDataBase {
     @Bean
@@ -22,7 +24,13 @@ public class InitDataBase {
                         .role(Role.ADMIN)
                         .build();
 
-                userRepository.saveAndFlush(admin);
+                User user=User.builder()
+                        .username("msvadelya")
+                        .password(passwordEncoder.encode("123"))
+                        .email("msvadelya@gmail.com")
+                        .build();
+
+                userRepository.saveAll(List.of(admin,user));
             }
 
 
