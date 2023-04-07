@@ -60,7 +60,7 @@ public class BetService {
 
     }
 
-    private Integer calcBetMoney(List<Bet> bets, Long winnerId){
+    public Integer calcBetMoney(List<Bet> bets, Long winnerId){
         AtomicReference<Integer> result= new AtomicReference<>(0);
         bets.forEach(bet -> {
             if(!Objects.equals(bet.getHorse().getId(), winnerId)){

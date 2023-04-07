@@ -1,6 +1,7 @@
 package com.example.app.controller;
 
 import com.example.app.dto.BetDTO;
+import com.example.app.dto.BetResultDTO;
 import com.example.app.dto.RegisterHorse;
 import com.example.app.service.BetService;
 import com.example.app.service.HorseService;
@@ -41,8 +42,8 @@ public class AdminController {
 
     @GetMapping("/calc/bet-money")
     public ResponseEntity<BetResultDTO> calcResultMoney(){
-        betService.calcResultMoney();
-        ResponseEntity.ok().build();
+//        betService.calcResultMoney();
+        return ResponseEntity.ok().build();
     }
 
 
