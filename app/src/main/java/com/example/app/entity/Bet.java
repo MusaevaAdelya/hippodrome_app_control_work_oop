@@ -18,15 +18,17 @@ public class Bet {
 
     @ManyToOne
     @JoinColumn(name = "horse_id", referencedColumnName = "id")
-    Horse horse;
+    private Horse horse;
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    User user;
+    private User user;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     @Builder.Default
     private Status status=Status.ACTIVE;
+
+    private Integer money;
 
 }
