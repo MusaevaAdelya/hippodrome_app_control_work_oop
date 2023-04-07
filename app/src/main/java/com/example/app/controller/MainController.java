@@ -1,5 +1,6 @@
 package com.example.app.controller;
 
+import com.example.app.dto.HorseDTO;
 import com.example.app.dto.NewBetDTO;
 import com.example.app.service.BetService;
 import com.example.app.service.HorseService;
@@ -9,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,7 +26,7 @@ public class MainController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/get/add-horses")
+    @GetMapping("/get/all-horses")
     public ResponseEntity<List<HorseDTO>> seeAllRacingHorses(){
         return ResponseEntity.ok().body(horseService.getAllHorses());
     }

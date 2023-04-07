@@ -19,7 +19,7 @@ public class Horse {
     private Long id;
 
     @NotBlank(message="name is required")
-    String name;
+    private String name;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
