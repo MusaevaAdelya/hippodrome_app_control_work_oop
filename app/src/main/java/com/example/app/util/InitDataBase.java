@@ -1,7 +1,9 @@
 package com.example.app.util;
 
+import com.example.app.entity.Horse;
 import com.example.app.entity.User;
 import com.example.app.enums.Role;
+import com.example.app.repository.HorseRepository;
 import com.example.app.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -13,10 +15,10 @@ import java.util.List;
 @Configuration
 public class InitDataBase {
     @Bean
-    CommandLineRunner initData(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    CommandLineRunner initData(UserRepository userRepository, HorseRepository horseRepository, PasswordEncoder passwordEncoder) {
         return args -> {
 
-            if(userRepository.findByEmail("adelya@gmail.com").isEmpty()){
+            if(userRepository.findAll().size()==0){
                 User admin=User.builder()
                         .username("adelya")
                         .password(passwordEncoder.encode("123"))
@@ -31,6 +33,21 @@ public class InitDataBase {
                         .build();
 
                 userRepository.saveAll(List.of(admin,user));
+            }
+
+            if(horseRepository.findAll().size()==0){
+                Horse horse1= Horse.builder()
+                        .name("Apple Jack")
+                        .build();
+
+                Horse horse2= Horse.builder()
+                        .name("Twilight Sparkle")
+                        .winner(true)
+                        .build();
+
+                horse2.setWinner(true);
+
+                horseRepository.saveAll(List.of(horse1,horse2));
             }
 
 

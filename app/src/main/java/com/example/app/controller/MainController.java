@@ -30,11 +30,11 @@ public class MainController {
     public ResponseEntity<List<HorseDTO>> seeAllRacingHorses(){
         return ResponseEntity.ok().body(horseService.getAllHorses());
     }
-//
-//    @GetMapping("/get/winner-horse")
-//    public ResponseEntity<HorseDTO> getWinnerHorse(){
-//        return ResponseEntity.ok().body(horseService.getWinnerHorse());
-//    }
+
+    @GetMapping("/get/winner-horse")
+    public ResponseEntity<HorseDTO> getWinnerHorse(){
+        return ResponseEntity.ok().body(horseService.getWinnerHorse());
+    }
 //
 //    @GetMapping("/get/money")
 //    public ResponseEntity<Integer> getWinnerHorse(Authentication authentication){

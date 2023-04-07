@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -28,5 +29,14 @@ public class HorseService {
     public List<HorseDTO> getAllHorses() {
         return horseRepository.findByStatus(HorseStatus.ACTIVE)
                 .stream().map(horseMapper::mapToHorseDTO).toList();
+    }
+
+    public HorseDTO getWinnerHorse() {
+        Optional<Horse> winner=horseRepository.findWinnerHorse();
+        if(winner.isEmpty()){
+            return null;
+        }else{
+            return horseMapper.mapToHorseDTO(winner.get());
+        }
     }
 }
