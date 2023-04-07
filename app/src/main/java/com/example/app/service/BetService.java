@@ -1,5 +1,6 @@
 package com.example.app.service;
 
+import com.example.app.dto.NewBetDTO;
 import com.example.app.entity.Bet;
 import com.example.app.entity.Horse;
 import com.example.app.entity.User;
@@ -17,16 +18,16 @@ public class BetService {
     private final HorseRepository horseRepository;
     private final BetRepository betRepository;
 
-    public void makeBet(Long horseId, String email, Integer money) {
+    public void makeBet(NewBetDTO newBetDTO, String email) {
         User user=userRepository.findByEmail(email)
                 .orElseThrow(()-> new UsernameNotFoundException("user not found: "+email));
-        Horse horse=horseRepository.findById(horseId)
-                .orElseThrow(()->new IllegalArgumentException(String.format("Horse with id %s not found",horseId)));
+        Horse horse=horseRepository.findById(newBetDTO.getHorseId())
+                .orElseThrow(()->new IllegalArgumentException(String.format("Horse with id %s not found",newBetDTO.getHorseId())));
 
         Bet newBet= Bet.builder()
                 .horse(horse)
                 .user(user)
-                .money(money)
+                .money(newBetDTO.getMoney())
                 .build();
 
         betRepository.save(newBet);
