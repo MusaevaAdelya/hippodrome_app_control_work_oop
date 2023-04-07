@@ -86,4 +86,11 @@ public class BetService {
                 .money(bet.getMoney())
                 .build();
     }
+
+    public void closeRacing() {
+        betRepository.closeBets();
+        horseRepository.setRandomHorseWinner();
+    }
+
+
 }

@@ -43,10 +43,7 @@ public class InitDataBase {
 
                 Horse horse2= Horse.builder()
                         .name("Twilight Sparkle")
-                        .winner(true)
                         .build();
-
-                horse2.setWinner(true);
 
                 horseRepository.saveAll(List.of(horse1,horse2));
 
