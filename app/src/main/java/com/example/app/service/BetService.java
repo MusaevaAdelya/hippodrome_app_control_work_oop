@@ -7,6 +7,7 @@ import com.example.app.entity.Bet;
 import com.example.app.entity.Horse;
 import com.example.app.entity.User;
 import com.example.app.enums.BetStatus;
+import com.example.app.mapper.BetMapper;
 import com.example.app.mapper.BetResultMapper;
 import com.example.app.mapper.HorseMapper;
 import com.example.app.mapper.UserMapper;
@@ -30,6 +31,7 @@ public class BetService {
     private final HorseService horseService;
     private final HorseMapper horseMapper;
     private final UserMapper userMapper;
+    private final BetMapper betMapper;
 
 
     public void makeBet(NewBetDTO newBetDTO, String email) {
@@ -79,16 +81,9 @@ public class BetService {
 
     public List<BetDTO> getAllBets() {
         List<Bet> bets=betRepository.findByStatus(BetStatus.ACTIVE);
-        return bets.stream().map(this::mapToBetDTO).toList();
+        return bets.stream().map(betMapper::mapToBetDTO).toList();
     }
 
-    private BetDTO mapToBetDTO(Bet bet){
-        return BetDTO.builder()
-                .user(userMapper.mapToUserDTO(bet.getUser()))
-                .horse(horseMapper.mapToHorseDTO(bet.getHorse()))
-                .money(bet.getMoney())
-                .build();
-    }
 
     public void closeRacing() {
         betRepository.closeBets();
