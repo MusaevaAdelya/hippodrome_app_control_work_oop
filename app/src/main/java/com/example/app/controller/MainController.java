@@ -1,5 +1,6 @@
 package com.example.app.controller;
 
+import com.example.app.service.BetService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
