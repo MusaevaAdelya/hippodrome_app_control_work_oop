@@ -60,6 +60,7 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "/webjars/**")
                         .permitAll()
+                        .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
                         .anyRequest()
                         .authenticated())
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
